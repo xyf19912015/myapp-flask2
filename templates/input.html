@@ -1,0 +1,75 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jul 17 15:28:30 2024
+
+@author: user
+"""
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-MDA5+ Juvenile Dermatomyositis Classification System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* 设置容器宽高比为2:1 */
+        .container {
+            max-width: 800px; /* 宽度 */
+            height: 400px; /* 高度 */
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center">Anti-MDA5+ Juvenile Dermatomyositis Classification System</h1>
+        <form method="post" action="/result">
+            <div class="form-group">
+                <label for="Heliotrope_Rash">Heliotrope Rash:</label>
+                <select class="form-control" id="Heliotrope_Rash" name="Heliotrope_Rash">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Muscle_Weakness">Muscle Weakness:</label>
+                <select class="form-control" id="Muscle_Weakness" name="Muscle_Weakness">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                 <div class="form-group">
+                     <label for="Fever">Fever:</label>
+                     <select class="form-control" id="Fever" name="Fever">
+                         <option value="Yes">Yes</option>
+                         <option value="No">No</option>
+                     </select>
+                 </div>
+                 <div class="form-group">
+                     <label for="Interstitial_Lung_Disease">Interstitial Lung Disease:</label>
+                     <select class="form-control" id="Interstitial_Lung_Disease" name="Interstitial_Lung_Disease">
+                         <option value="Yes">Yes</option>
+                         <option value="No">No</option>
+                     </select>
+                 </div>
+            </div>
+            <div class="form-group">
+                <label for="LDH">LDH (U/L):</label>
+                <input type="text" class="form-control" id="LDH" name="LDH" required>
+            </div>
+            <div class="form-group">
+                <label for="ESR">ESR (mm/h):</label>
+                <input type="text" class="form-control" id="ESR" name="ESR" required>
+            </div>
+            <div class="form-group">
+                <label for="PLT">PLT (10^9/L):</label>
+                <input type="text" class="form-control" id="PLT" name="PLT" required>
+            </div>          
+            <div class="form-group">
+                <label for="AST">AST (U/L):</label>
+                <input type="text" class="form-control" id="AST" name="AST" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
