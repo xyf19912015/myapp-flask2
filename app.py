@@ -32,6 +32,9 @@ url = 'https://raw.githubusercontent.com/xyf19912015/myapp-flask2/JDM32SNE2XGB2.
 response = requests.get(url)
 data = pd.read_csv(io.StringIO(response.content.decode('utf-8')), encoding='gbk')
 
+print(data.columns.tolist())
+data.columns = data.columns.str.strip()  # 移除列名中的前后空格
+
 # 确定使用的特征
 selected_features = [
     'Heliotrope Rash', 
