@@ -5,6 +5,13 @@ Created on Wed Jul 17 15:25:30 2024
 @author: user
 """
 
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jul 17 15:25:30 2024
+
+@author: user
+"""
+
 from flask import Flask, request, render_template
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -13,11 +20,17 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from xgboost import XGBClassifier
 from sklearn.metrics import roc_curve
 import numpy as np
+import requests
+import io
 
 app = Flask(__name__)
 
+random_state = 42
+
 # 加载数据
-data = pd.read_csv("C:/Users/user/Desktop/Python/ML/JDM/JDM32SNE2XGB2.csv", encoding='gbk')
+url = 'https://raw.githubusercontent.com/xyf19912015/myapp-flask2/JDM32SNE2XGB2.csv'
+response = requests.get(url)
+data = pd.read_csv(io.StringIO(response.content.decode('utf-8')), encoding='gbk')
 
 # 确定使用的特征
 selected_features = [
@@ -40,14 +53,14 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # 过采样处理不平衡
-smote = SMOTE(sampling_strategy=1, random_state=42)
+smote = SMOTE(sampling_strategy=1, random_state=random_state)
 X_resampled, y_resampled = smote.fit_resample(X_scaled, y)
 
 # 训练集测试集分割
-X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.25, random_state=random_state)
 
 # 构建模型
-xgb_classifier = XGBClassifier(random_state=42)
+xgb_classifier = XGBClassifier(random_state=random_state)
 
 # 网格搜索优化超参数
 param_grid = {
@@ -77,6 +90,7 @@ def calculate_best_threshold(model, X, y):
 
 best_threshold = calculate_best_threshold(best_xgb, X_test, y_test)
 print(best_threshold)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('input.html')
