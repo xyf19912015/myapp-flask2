@@ -28,7 +28,7 @@ app = Flask(__name__)
 random_state = 42
 
 # 加载数据
-url = 'https://raw.githubusercontent.com/xyf19912015/myapp-flask2/JDM32SNE2XGB2.csv'
+url = 'https://raw.githubusercontent.com/xyf19912015/myapp-flask2/main/JDM32SNE2XGB2.csv'
 response = requests.get(url)
 data = pd.read_csv(io.StringIO(response.content.decode('utf-8')), encoding='gbk')
 
