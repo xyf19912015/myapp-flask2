@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 26 23:29:00 2024
-
-@author: user
-"""
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,12 +11,29 @@ Created on Fri Jul 26 23:29:00 2024
             max-width: 800px; /* 宽度 */
             height: 400px; /* 高度 */
         }
+        /* 根据分类结果设置颜色 */
+        .classification {
+            font-size: 2em; /* 字体大小 */
+            padding: 20px; /* 剪边空间 */
+            border-radius: 8px; /* 圆角 */
+        }
+        .high-risk {
+            background-color: rgba(255, 99, 71, 0.7); /* 柔和红色 */
+            color: white;
+        }
+        .low-risk {
+            background-color: rgba(34, 139, 34, 0.7); /* 柔和绿色 */
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-light">
     <div class="container mt-5">
         <div class="alert alert-info text-center">
-            <h2>Classification: {{ classification }}</h2>
+            <div class="classification {{ 'High Risk！' if 'High Risk' in classification else 'Low Risk！' }}">
+                <h2>Classification: {{ classification }}</h2>
+            </div>
+            <h4>Predicted Probability: {{ y_proba | round(2) }}</h4>
         </div>
         <a href="/" class="btn btn-secondary btn-block">Back</a>
     </div>
