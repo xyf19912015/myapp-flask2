@@ -5,13 +5,6 @@ Created on Wed Jul 17 15:25:30 2024
 @author: user
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 17 15:25:30 2024
-
-@author: user
-"""
-
 from flask import Flask, request, render_template
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -146,9 +139,10 @@ def result():
 
     # 预测并分类
     y_proba = best_xgb.predict_proba(user_input_scaled)[:, 1]
-    classification = 'Cluster 2(High risk)' if y_proba >= best_threshold else 'Cluster 1(Low risk)'
+    
+    classification = 'Cluster 2 (High Risk)' if y_proba >= best_threshold else 'Cluster 1 (Low Risk)'
 
-    return render_template('result.html', classification=classification)
+    return render_template('result.html', classification=classification, y_proba=y_proba)
 
 if __name__ == '__main__':
     app.run(debug=True)
